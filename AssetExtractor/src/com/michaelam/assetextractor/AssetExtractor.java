@@ -1,6 +1,7 @@
 package com.michaelam.assetextractor;
 
 import android.content.Context;
+import android.util.Log;
 import com.google.appinventor.components.annotations.DesignerComponent;
 import com.google.appinventor.components.annotations.SimpleFunction;
 import com.google.appinventor.components.annotations.SimpleObject;
@@ -16,7 +17,7 @@ import java.io.InputStream;
 
 
     @DesignerComponent(
-            version = com.michaelam.audiometadataretriever.MetadataRetriever.VERSION,
+            version = com.michaelam.assetextractor.AssetExtractor.VERSION,
             description =
                     "An Extension to extract an assets from app.",
             category = ComponentCategory.EXTENSION, nonVisible = true,
@@ -37,7 +38,19 @@ import java.io.InputStream;
         public String GetAssetFullFilePath(String fileName) {
             File cachedAsset = new File(context.getCacheDir(), fileName);
             String assetFullFilePath = "";
-            if(cachedAsset.exists())
+            if(isDevelopment())
+            {
+                File developmentAsset = new File( context.getExternalFilesDir(null).getAbsolutePath() + "/AppInventor/assets/",fileName);
+                if (developmentAsset.exists())
+                {
+                    assetFullFilePath = developmentAsset.getAbsolutePath();
+                }
+                else
+                {
+                    Log.e("AssetExtractor","ERROR! COULD NOT FIND ASSET.");
+                }
+            }
+            else if(cachedAsset.exists())
             {
               assetFullFilePath = cachedAsset.getAbsolutePath();
             }
@@ -69,5 +82,10 @@ import java.io.InputStream;
                 throw new IOException("Could not open asset/asset does not exist", e);
             }
             return cacheFile;
+        }
+
+        public Boolean isDevelopment()
+        {
+            return context.getFilesDir().getAbsolutePath().contains("companion");
         }
 }
