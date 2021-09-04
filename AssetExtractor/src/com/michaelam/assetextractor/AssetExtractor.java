@@ -38,31 +38,20 @@ import java.io.InputStream;
         public String GetAssetFullFilePath(String fileName) {
             File cachedAsset = new File(context.getCacheDir(), fileName);
             String assetFullFilePath = "";
-            if(isDevelopment())
-            {
-                File developmentAsset = new File( context.getExternalFilesDir(null).getAbsolutePath() + "/AppInventor/assets/",fileName);
-                if (developmentAsset.exists())
-                {
-                    assetFullFilePath = developmentAsset.getAbsolutePath();
-                }
-                else
-                {
-                    Log.e("AssetExtractor","ERROR! COULD NOT FIND ASSET.");
-                }
-            }
-            else if(cachedAsset.exists())
-            {
+
+            if(cachedAsset.exists()) {
               assetFullFilePath = cachedAsset.getAbsolutePath();
             }
-            else
-            {
-                    try {
+            else {
+                    try
+                    {
                         assetFullFilePath = ExtractAssetToCache(fileName).getAbsolutePath();
-                    } catch (IOException e) {
+                    }
+                    catch (IOException e) {
                         e.printStackTrace();
                     }
             }
-            return assetFullFilePath;
+            return "file://" + assetFullFilePath;
         }
 
 
