@@ -35,7 +35,7 @@ import java.io.InputStream;
         }
 
         @SimpleFunction(description = "Extract asset from the project's media list.")
-        public String GetAssetFullFilePath(String fileName) {
+        public String GetAssetAbsolutePath(String fileName) {
             File cachedAsset = new File(context.getCacheDir(), fileName);
             String assetFullFilePath = "";
 
