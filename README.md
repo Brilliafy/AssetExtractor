@@ -13,5 +13,8 @@
 *(If the asset is not found in cache, it is extracted from the app to the cache automatically)*
 
 
+## Credits
+[TaihouKai's sample code](https://stackoverflow.com/questions/67561778/faster-method-to-get-path-string-to-a-file-in-assets-folder-in-android-studio).
+
 ### Thank you! 
 Leave a star on the project if it helps.
