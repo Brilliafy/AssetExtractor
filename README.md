@@ -2,7 +2,11 @@
 
 ## An extension made to extract project media files/assets to the cache, where they are accesible for processing. 
 
-# Doccumentation
+# Notes
+
+### THIS EXTENSION IS EXPLICITLY MADE FOR API ≤29, SINCE IO IS FIXED AFTER ANDROID 10.
+
+# Documentation
 
 ## The extension is pretty straight forward: 
  - 1. Install the extension
